@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FFF 4k Wallpaper Images</string>
+    <string name="popular">Popular</string>
+    <string name="home">Home</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="home_screen_and_lock_screen">Home Screen and Lock Screen</string>
+
+</resources>
