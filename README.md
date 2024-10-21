@@ -16,7 +16,7 @@
   Enjoy an easy-to-navigate UI for seamless browsing, downloading, and setting of wallpapers.
 
 ## App Previews
-:-------------------------:|:-------------------------:|:-------------------------:
+
 <p float="left">
   <img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg" alt="Preview 1" width="200" />
   <img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg" alt="Preview 2" width="200" /> 
