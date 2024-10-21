@@ -17,8 +17,11 @@
 
 ## App Previews
 :-------------------------:|:-------------------------:|:-------------------------:
-![Image 1](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg) | ![Image 2](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg) | ![Image 3](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img3.jpg)
-
+<p float="left">
+  <img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg" alt="Preview 1" width="200" />
+  <img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg" alt="Preview 2" width="200" /> 
+  <img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img3.jpg" alt="Preview 3" width="200" />
+</p>
 ## Disclaimer
 This application is not an official app and is not affiliated with, sponsored, or endorsed by any company. It was created by fans for fans, to help users easily find and download FF wallpapers. All trademarks and copyrights are the property of their respective owners. Any requests for the removal of specific images or wallpapers will be honored promptly.
 
