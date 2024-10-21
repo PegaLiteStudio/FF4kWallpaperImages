@@ -16,10 +16,8 @@
   Enjoy an easy-to-navigate UI for seamless browsing, downloading, and setting of wallpapers.
 
 ## App Previews
-<a href="url"><img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg" align="left" height="500" width="260" ></a>
-<a href="url"><img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg" align="left" height="500" width="260" ></a>
-<a href="url"><img src="https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img3.jpg" align="left" height="500" width="260" ></a>
 
+![Image 1](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg) | ![Image 2](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg) | ![Image 3](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img3.jpg)
 
 ## Disclaimer
 This application is not an official app and is not affiliated with, sponsored, or endorsed by any company. It was created by fans for fans, to help users easily find and download FF wallpapers. All trademarks and copyrights are the property of their respective owners. Any requests for the removal of specific images or wallpapers will be honored promptly.
