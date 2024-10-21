@@ -15,6 +15,12 @@
 - **User-Friendly Interface**  
   Enjoy an easy-to-navigate UI for seamless browsing, downloading, and setting of wallpapers.
 
+## App Previews
+
+![Image 1](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img1.jpg)
+![Image 2](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img2.jpg)
+![Image 3](https://github.com/PegaLiteStudio/FF4kWallpaperImages/blob/master/Images/img3.jpg)
+
 ## Disclaimer
 This application is not an official app and is not affiliated with, sponsored, or endorsed by any company. It was created by fans for fans, to help users easily find and download FF wallpapers. All trademarks and copyrights are the property of their respective owners. Any requests for the removal of specific images or wallpapers will be honored promptly.
 
@@ -34,8 +40,4 @@ We plan to update the app regularly with more wallpapers and enhanced features. 
 `com.pegalite.ff4kwallpaperimages`
 
 ## Contact
-For feedback or support, please reach out to us at [sahilthegeek999@gmail.com] or submit your requests directly through the app.
-
----
-
-This version includes the package name and the Play Store URL link for easy access.
+For feedback or support, please reach out to us at [sahilthegeek999@gmail.com](mailto:sahilthegeek999@gmail.com) or submit your requests directly through the app.
