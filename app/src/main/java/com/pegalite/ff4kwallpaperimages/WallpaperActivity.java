@@ -23,7 +23,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.pegalite.alerts.dialog.PegaProgressDialog;
+import com.pegalite.alerts.utils.DialogData;
+import com.pegalite.ff4kwallpaperimages.ad.InterstitialAdManager;
+import com.pegalite.ff4kwallpaperimages.ad.RewardedAdManager;
 import com.pegalite.ff4kwallpaperimages.databinding.ActivityWallpaperBinding;
 import com.pegalite.ff4kwallpaperimages.databinding.OptionBottomSheetBinding;
 import com.squareup.picasso.Picasso;
@@ -51,6 +56,8 @@ public class WallpaperActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.prussian_blue));
+
+        InterstitialAdManager.showAd(this, null);
 
         binding.back.setOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
 
@@ -121,33 +128,41 @@ public class WallpaperActivity extends AppCompatActivity {
      * Download and save image in Pictures Folder. For this we Don't Need permission above api 10;
      */
     private void downloadImage() {
-        checkStoragePermission();
-        Picasso.get().load(IMAGE_URL).into(new Target() {
+        RewardedAdManager.showAd(this, new RewardedAdManager.RewardedCallback() {
             @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        saveImageToMediaStore(bitmap);
-                    } else {
-                        saveImageToExternalStorage(bitmap);
+            public void onUserEarnedReward(RewardItem reward) {
+
+            }
+
+            @Override
+            public void onAdClosed() {
+                checkStoragePermission();
+                Picasso.get().load(IMAGE_URL).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        try {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                saveImageToMediaStore(bitmap);
+                            } else {
+                                saveImageToExternalStorage(bitmap);
+                            }
+                            Toast.makeText(WallpaperActivity.this, "Image saved successfully!", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            Toast.makeText(WallpaperActivity.this, "Failed to save image", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    Toast.makeText(WallpaperActivity.this, "Image saved successfully!", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    Toast.makeText(WallpaperActivity.this, "Failed to save image", Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                Toast.makeText(WallpaperActivity.this, "Failed to download image", Toast.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        Toast.makeText(WallpaperActivity.this, "Failed to download image", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-                ProgressDialog progressDialog = new ProgressDialog(WallpaperActivity.this, R.drawable.dialog_rounded_corner);
-                progressDialog.setTitle("Loading...");
-                progressDialog.setMessage("Please Wait While Loading.");
-                progressDialog.show();
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                        PegaProgressDialog progressDialog = new PegaProgressDialog(WallpaperActivity.this, DialogData.DISMISS_ON_CANCEL);
+                        progressDialog.show("Loading...");
+                    }
+                });
             }
         });
     }

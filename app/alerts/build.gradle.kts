@@ -1,24 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
 }
 
 android {
-    namespace = "com.pegalite.ff4kwallpaperimages"
+    namespace = "com.pegalite.alerts"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pegalite.ff4kwallpaperimages"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 4
-        versionName = "1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -26,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         viewBinding = true
@@ -38,28 +35,16 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
 
-    implementation(project(":app:alerts"))
+    // For Lottie Animation
+    implementation(libs.lottie)
 
     /* For Responsive Layout*/
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
 
-    implementation(libs.picasso)
-
-    implementation(libs.glide)
-
-    /*For Ads*/
-    implementation(libs.play.services.ads)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-}
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
 }

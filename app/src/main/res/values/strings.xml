@@ -7,4 +7,18 @@
     <string name="home_screen">Home Screen</string>
     <string name="home_screen_and_lock_screen">Home Screen and Lock Screen</string>
 
+    <!--        Sample AD IDs-->
+<!--    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>-->
+<!--    <string name="interstitial_ad_id">ca-app-pub-3940256099942544/1033173712</string>-->
+<!--    <string name="rewarded_ad_id">ca-app-pub-3940256099942544/5224354917</string>-->
+
+    <!--            Real AD IDs-->
+        <string name="app_id">ca-app-pub-1907660941815601~9183627626</string>
+        <string name="interstitial_ad_id">ca-app-pub-1907660941815601/9125352378</string>
+        <string name="rewarded_ad_id">ca-app-pub-1907660941815601/4429744685</string>
+
+    <string name="watch_ad_to_download">Watch Ad to Download</string>
+
+    <string name="download">Download</string>
+
 </resources>
