@@ -1,17 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.firebase.firebase.perf)
 }
 
 android {
     namespace = "com.pegalite.ff4kwallpaperimages"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.pegalite.ff4kwallpaperimages"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 4
-        versionName = "1.4"
+        targetSdk = 36
+        versionCode = 8
+        versionName = "1.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,12 +28,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
     }
+
+//    tasks.withType<JavaCompile>().configureEach {
+//        options.compilerArgs.add("-Xlint:deprecation")
+//    }
+
 }
 
 dependencies {
@@ -53,6 +60,12 @@ dependencies {
 
     /*For Ads*/
     implementation(libs.play.services.ads)
+    implementation(libs.unity.ads)
+    implementation(libs.unity)
+
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.perf)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
