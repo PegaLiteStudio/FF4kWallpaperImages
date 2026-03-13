@@ -12,6 +12,7 @@ import com.pegalite.ff4kwallpaperimages.databinding.ImageItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Random;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
 
@@ -32,7 +33,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         String imageUrl = imageUrls.get(position);
-        Picasso.get().load(imageUrl).into(holder.binding.imageView);  // Load the image using Picasso
+        Picasso.get().load(imageUrl).placeholder(new Random().nextBoolean() ? R.drawable.ic_placeholder_v : R.drawable.ic_placeholder_h).into(holder.binding.imageView);  // Load the image using Picasso
 
         holder.binding.getRoot().setOnClickListener(view -> context.startActivity(new Intent(context, WallpaperActivity.class).putExtra("url", imageUrl)));
     }
@@ -40,6 +41,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public int getItemCount() {
         return imageUrls.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return imageUrls.get(position).hashCode();
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
