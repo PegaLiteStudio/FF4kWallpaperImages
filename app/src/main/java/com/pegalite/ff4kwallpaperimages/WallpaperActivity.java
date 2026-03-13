@@ -29,6 +29,7 @@ import com.pegalite.alerts.dialog.PegaProgressDialog;
 import com.pegalite.alerts.utils.DialogData;
 import com.pegalite.ff4kwallpaperimages.ad.InterstitialAdManager;
 import com.pegalite.ff4kwallpaperimages.ad.RewardedAdManager;
+import com.pegalite.ff4kwallpaperimages.alerts.WatchAdToUnlockDialog;
 import com.pegalite.ff4kwallpaperimages.databinding.ActivityWallpaperBinding;
 import com.pegalite.ff4kwallpaperimages.databinding.OptionBottomSheetBinding;
 import com.squareup.picasso.Picasso;
@@ -124,11 +125,14 @@ public class WallpaperActivity extends AppCompatActivity {
         }
     }
 
+    PegaProgressDialog progressDialog;
+
     /**
      * Download and save image in Pictures Folder. For this we Don't Need permission above api 10;
      */
     private void downloadImage() {
-        RewardedAdManager.showAd(this, new RewardedAdManager.RewardedCallback() {
+        WatchAdToUnlockDialog watchAdToUnlockDialog = new WatchAdToUnlockDialog(this, DialogData.DISMISS_ON_CANCEL);
+        watchAdToUnlockDialog.show(() -> RewardedAdManager.showAd(this, new RewardedAdManager.RewardedCallback() {
             @Override
             public void onUserEarnedReward(RewardItem reward) {
 
@@ -140,6 +144,10 @@ public class WallpaperActivity extends AppCompatActivity {
                 Picasso.get().load(IMAGE_URL).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        if (progressDialog != null && progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+                        progressDialog = null;
                         try {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                                 saveImageToMediaStore(bitmap);
@@ -159,12 +167,12 @@ public class WallpaperActivity extends AppCompatActivity {
 
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) {
-                        PegaProgressDialog progressDialog = new PegaProgressDialog(WallpaperActivity.this, DialogData.DISMISS_ON_CANCEL);
+                        progressDialog = new PegaProgressDialog(WallpaperActivity.this, DialogData.DISMISS_ON_CANCEL);
                         progressDialog.show("Loading...");
                     }
                 });
             }
-        });
+        }));
     }
 
     /**
@@ -272,17 +280,22 @@ public class WallpaperActivity extends AppCompatActivity {
      * Sets wallpaper Home/Lock Screen
      */
     private void setWallpaper(int flag) {
-
         // Load the image and set as wallpaper using Picasso
         Picasso.get().load(IMAGE_URL).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                try {
-                    wallpaperManager.setBitmap(bitmap, null, true, flag);
-                    Toast.makeText(WallpaperActivity.this, "Wallpaper set successfully", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    Toast.makeText(WallpaperActivity.this, "Failed to set wallpaper", Toast.LENGTH_SHORT).show();
-                }
+                new Thread(() -> {
+                    try {
+                        wallpaperManager.setBitmap(bitmap, null, true, flag);
+                        runOnUiThread(() ->
+                                Toast.makeText(WallpaperActivity.this, "Wallpaper set successfully", Toast.LENGTH_SHORT).show()
+                        );
+                    } catch (IOException e) {
+                        runOnUiThread(() ->
+                                Toast.makeText(WallpaperActivity.this, "Failed to set wallpaper", Toast.LENGTH_SHORT).show()
+                        );
+                    }
+                }).start();
             }
 
             @Override

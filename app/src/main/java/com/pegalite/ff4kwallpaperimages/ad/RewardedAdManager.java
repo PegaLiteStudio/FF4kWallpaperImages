@@ -76,7 +76,7 @@ public class RewardedAdManager {
         } else {
             // Show loading dialog while ad loads
             PegaProgressDialog dialog = new PegaProgressDialog(activity, DialogData.UN_CANCELABLE);
-            dialog.show("Loading Ad...");
+            dialog.show("Loading...");
 
             isLoading = true;
             AdRequest adRequest = new AdRequest.Builder().build();

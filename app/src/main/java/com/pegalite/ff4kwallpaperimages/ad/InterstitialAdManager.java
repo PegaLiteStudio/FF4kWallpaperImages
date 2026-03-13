@@ -66,7 +66,7 @@ public class InterstitialAdManager {
         } else {
             // Show loading dialog while loading the ad
             PegaProgressDialog dialog = new PegaProgressDialog(activity, DialogData.UN_CANCELABLE);
-            dialog.show("Loading Ad...");
+            dialog.show("Loading...");
 
             isLoading = true;
             AdRequest adRequest = new AdRequest.Builder().build();
