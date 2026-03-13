@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/prussian_blue"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
-
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -20,20 +20,35 @@
         app:title="@string/app_name"
         app:titleTextColor="@color/white" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#142A45"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,6 +65,7 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:importantForAccessibility="no"
                 android:src="@drawable/ic_home"
                 app:tint="@color/cerise" />
 
